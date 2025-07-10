@@ -1,6 +1,6 @@
 id: net.fionix.elelem
 
-runtime: org.gnome.Platform
+runtime: org.gnome.Sdk
 runtime-version: "48"
 sdk: org.gnome.Sdk
 
@@ -18,12 +18,12 @@ modules:
     sources:
       - type: file
         url: https://github.com/cjonas1999/OverBind/releases/download/1.5.1/OverBind_1.5.1_amd64.deb # I don't know if I should extract overbind from .deb or build from here (If wayland libs are included in the .deb file I'll prob extract)
-        sha256: ba970904cab54d2178206dd49b4580f109450969929c946103838bae031d3d8d
+        sha256: c8357067db85d5b6b92e866bc51c7b30b6d7806b42bbdaabadbfb71316e370fb
         only-arches: [x86_64]
     build-commands:
       - ar -x *.deb
       - tar -xf data.tar.gz
-      - install -Dm755 usr/bin/OverBind /app/bin/OverBind
+      - install -Dm755 usr/bin/OverBind /app/bin/overbind
       - install -Dm644 usr/share/applications/OverBind.desktop /app/share/applications/io.github.cjonas1999.OverBind.desktop
       - desktop-file-edit /app/share/applications/io.github.cjonas1999.OverBind.desktop --set-key=Icon --set-value=io.github.cjonas1999.OverBind --remove-key=X-Desktop-File-Install-Version
       - install -Dm644 usr/share/icons/hicolor/128x128/apps/OverBind.png /app/share/icons/hicolor/128x128/apps/io.github.cjonas1999.OverBind.png
