@@ -1,10 +1,10 @@
-id: net.fionix.elelem
+id: io.github.cjonas1999.OverBind
 
 runtime: org.gnome.Platform
 runtime-version: "48"
 sdk: org.gnome.Sdk
 
-command: elelem
+command: overbind
 finish-args:
   - --socket=fallback-x11 # Permission needed to show the window
   - --socket=wayland # Permission needed to show the window
@@ -13,24 +13,20 @@ finish-args:
   - --share=network
 
 modules:
-  - name: elelem
+  - name: overbind
     buildsystem: simple
     sources:
       - type: file
-        url: https://github.com/nazebzurati/elelem/releases/download/v0.3.0/Elelem_0.3.0_amd64.deb
+        url: https://github.com/cjonas1999/OverBind/releases/download/1.5.1/OverBind_1.5.1_amd64.deb # I don't know if I should extract overbind from .deb or build from here (If wayland libs are included in the .deb file I'll prob extract)
         sha256: ba970904cab54d2178206dd49b4580f109450969929c946103838bae031d3d8d
         only-arches: [x86_64]
-      - type: file
-        url: https://github.com/nazebzurati/elelem/releases/download/v0.3.0/Elelem_0.3.0_arm64.deb
-        sha256: 313611ac93c8b43482663f96a952276aae50530b66c2569526c02c13017cdde8
-        only-arches: [aarch64]
     build-commands:
       - ar -x *.deb
       - tar -xf data.tar.gz
-      - install -Dm755 usr/bin/elelem /app/bin/elelem
-      - install -Dm644 usr/share/applications/Elelem.desktop /app/share/applications/net.fionix.elelem.desktop
-      - desktop-file-edit /app/share/applications/net.fionix.elelem.desktop --set-key=Icon --set-value=net.fionix.elelem --remove-key=X-Desktop-File-Install-Version
-      - install -Dm644 usr/share/icons/hicolor/128x128/apps/elelem.png /app/share/icons/hicolor/128x128/apps/net.fionix.elelem.png
-      - install -Dm644 usr/share/icons/hicolor/32x32/apps/elelem.png /app/share/icons/hicolor/32x32/apps/net.fionix.elelem.png
-      - install -Dm644 usr/share/icons/hicolor/256x256@2/apps/elelem.png /app/share/icons/hicolor/256x256@2/apps/net.fionix.elelem.png
-      - install -Dm644 usr/share/net.fionix.elelem.metainfo.xml /app/share/metainfo/net.fionix.elelem.metainfo.xml
+      - install -Dm755 usr/bin/OverBind /app/bin/OverBind
+      - install -Dm644 usr/share/applications/OverBind.desktop /app/share/applications/io.github.cjonas1999.OverBind.desktop
+      - desktop-file-edit /app/share/applications/io.github.cjonas1999.OverBind.desktop --set-key=Icon --set-value=io.github.cjonas1999.OverBind --remove-key=X-Desktop-File-Install-Version
+      - install -Dm644 usr/share/icons/hicolor/128x128/apps/OverBind.png /app/share/icons/hicolor/128x128/apps/io.github.cjonas1999.OverBind.png
+      - install -Dm644 usr/share/icons/hicolor/32x32/apps/OverBind.png /app/share/icons/hicolor/32x32/apps/io.github.cjonas1999.OverBind.png
+      - install -Dm644 usr/share/icons/hicolor/256x256@2/apps/OverBind.png /app/share/icons/hicolor/256x256@2/apps/io.github.cjonas1999.OverBind.png
+      #- install -Dm644 usr/share/io.github.cjonas1999.OverBind.metainfo.xml /app/share/metainfo/io.github.cjonas1999.OverBind.metainfo.xml
